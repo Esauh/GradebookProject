@@ -1,0 +1,4 @@
+This is the repository containing the mySQL script to create the gradebook database. This was created to work inside the mySQL applications/ecosystems to display/insert/update data inside a created gradebook database.
+
+Preresiquites:
+You will need to install mySQL Community Server & mySQL Workbench or any application that can run mySQL scripts and display tables/data that are created and inserted. 
