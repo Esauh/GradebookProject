@@ -111,26 +111,33 @@ select min(score) as lowest from Grade where assignment_id = 3;
 #This will add an assignment to the course named Midterm as assignment_id 5 with a percentage weight of 20%
 insert into Assignment values (5,'Midterm', 20.0, 1);
 
+
+
 #This will change the percentage of the category Tests to 25%
-update Assignment set percentage = 25.0 where category = 'Tests' and course_id = 1
+update Assignment set percentage = 50.0 where category = 'Tests' and course_id = 1
 
 # This will add 2 pooints to the score of every student
 update Grade set score = score + 2 where assignment_id = '2';
+
+insert into Grade values (17, 90.0, 3, 1);
+delete from Grade where grade_id in (20,19,18,17,21);
 
 #This will add 2 points to the score of students if their last name contains a Q
 update Grade join Student on Grade.student_id = Student.student_id
 set score = score + 2 where Student.last_name like '%Q%';
 
 #This will compute the grade of a student (student_id = 1 = Darius)
-select Student.first_name, Student.last_name, sum(Assignment.percentage*Grade.score /100) as final_grade 
+select Student.first_name, Student.last_name, sum(Grade.score*Assignment.percentage)/sum(Assignment.percentage) as final_grade 
 from Student join Grade on Student.student_id = Grade.student_id
 join Assignment on Grade.assignment_id = Assignment.assignment_id where Student.student_id = 1;
 
-#This will compute the grade for a student when the lowest score for a given category is dropped (student_id = 2 = Alex)
-select Student.first_name, Student.last_name, sum(Assignment.percentage * (Grade.score - min(Grade.score))/100) as final_grade 
-from Student join Grade on Student.student_id = Grade.student_id
-join Assignment on Grade.assignment_id = Assignment.assignment_id where Student.student_id = 2
-not in(select min(Grade.score) where Assignment.category = 'Tests')
-order by Student.student_id;
 
-
+#TODO: This will compute the grade for a student when the lowest score for a given category is dropped (student_id = 1 = Darius)
+select Student.first_name, Student.last_name, sum(Assignment.percentage*Grade.score)/sum(Assignment.percentage) as final_grade 
+from Student join Grade on Student.student_id = Grade.student_id 
+join Assignment on Grade.assignment_id = Assignment.assignment_id 
+where Grade.score not in (
+    select min(Grade.score) 
+    from Grade join Assignment on Grade.assignment_id = Assignment.assignment_id 
+    where Assignment.category ='Tests') and Student.student_id = 1
+group by Student.student_id;
