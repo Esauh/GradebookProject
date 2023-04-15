@@ -127,6 +127,10 @@ from Student join Grade on Student.student_id = Grade.student_id
 join Assignment on Grade.assignment_id = Assignment.assignment_id where Student.student_id = 1;
 
 #This will compute the grade for a student when the lowest score for a given category is dropped (student_id = 2 = Alex)
-select Student.first_name, Student.last_name, sum(Assignment.percentage*(Grade.score - min(Grade.score))/100) as grade_final
-from Student join Grade on Student.student_id = Grade.student_id 
-join Assignment on Grade.assignment_id = Assignment.assignment_id where Student.student_id = 2;
+select Student.first_name, Student.last_name, sum(Assignment.percentage * (Grade.score - min(Grade.score))/100) as final_grade 
+from Student join Grade on Student.student_id = Grade.student_id
+join Assignment on Grade.assignment_id = Assignment.assignment_id where Student.student_id = 2
+not in(select min(Grade.score) where Assignment.category = 'Tests')
+order by Student.student_id;
+
+
