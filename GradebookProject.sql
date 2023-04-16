@@ -5,24 +5,24 @@ use gradebook;
 #Instantiates Course Table (PK: course_id)
 create table course(
 course_id int primary key,
-department varchar(255),
-course_number int,
-course_name varchar(255),
-semester varchar(255),
-year int);
+department varchar(255) not null,
+course_number int not null,
+course_name varchar(255) not null,
+semester varchar(255) not null,
+year int not null);
 
 #Instantiates Student Table (PK: student_id FK: course_id from Course)
 create table Student(
 student_id int primary key,
-first_name varchar(255),
-last_name varchar(255),
-course_id int,
+first_name varchar(255) not null,
+last_name varchar(255) not null,
+course_id int not null,
 foreign key (course_id) references Course(course_id));
 
 #Instantiates Assignment Table (PK: assignment_id FK: course_id from Course)
 create table Assignment(
 assignment_id int primary key,
-category varchar(255), 
+category varchar(255) not null, 
 percentage decimal(5,2),
 course_id int,
 foreign key (course_id) references Course(course_id));
