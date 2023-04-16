@@ -1,4 +1,3 @@
-# creates gradebook database where tables and data will be stored in
 create database gradebook;
 
 use gradebook;
@@ -41,7 +40,7 @@ foreign key (student_id) references Student(student_id));
 insert into Course values(1, 'Electical Engineering', 200, 'Principles of Eletronics', 'Spring', 2023);
 
 #Un commenting and executing line below will all data inserted into Course Table  
-#select * from Course
+select * from Course
 
 #Inserting various students into students table
 insert into Student values
@@ -64,7 +63,7 @@ insert into Assignment values
 
 #Inserting various grades into the Grade table for each student in our student table
 insert into Grade values
-#Grades for Darius
+#Grades for Darius (student_id=1)
 (1, 10.0, 1, 1),
 (2, 98.0, 2, 1),
 (3, 99.0, 3, 1),
@@ -87,7 +86,7 @@ insert into Grade values
 
 
 # Uncomment and execute line to see all grades in the grade table
-#select * from Grade;
+select * from Grade;
 
 #Lists all the students in a course
 select s. * from Student s join Course c on s.course_id = c.course_id where c.course_id = 1;
@@ -116,11 +115,9 @@ insert into Assignment values (5,'Midterm', 20.0, 1);
 #This will change the percentage of the category Tests to 25%
 update Assignment set percentage = 50.0 where category = 'Tests' and course_id = 1
 
-# This will add 2 pooints to the score of every student
+# This will add 2 points to the score of every student
 update Grade set score = score + 2 where assignment_id = '2';
 
-insert into Grade values (17, 90.0, 3, 1);
-delete from Grade where grade_id in (20,19,18,17,21);
 
 #This will add 2 points to the score of students if their last name contains a Q
 update Grade join Student on Grade.student_id = Student.student_id
@@ -141,3 +138,7 @@ where Grade.score not in (
     from Grade join Assignment on Grade.assignment_id = Assignment.assignment_id 
     where Assignment.category ='Tests') and Student.student_id = 1
 group by Student.student_id;
+
+#TODO: Test Cases
+insert into Grade values (17, 50, 3, 1);
+delete from Grade where grade_id = (17);
