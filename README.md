@@ -1,6 +1,6 @@
 ### Gradebook Database Project
 
-This is the repository containing the mySQL script to create the gradebook database. This was created to work inside the mySQL applications/ecosystems to display/insert/update data inside a created gradebook database.
+This is the repository containing the source code and ER Design to create the gradebook database utilized in this project. This was created to work inside the mySQL applications/ecosystems to display/insert/update data inside a created gradebook database.
 
 ## Preresiquites
 * Have [mySQLServer](https://dev.mysql.com/downloads/mysql/) and [mySQLWorkbench](https://dev.mysql.com/downloads/installer/) installed on your machine 
