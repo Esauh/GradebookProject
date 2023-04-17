@@ -9,5 +9,3 @@ This is the repository containing the source code and ER Design to create the gr
 
 ## ER Design(Crowsfoot)
 ![ER Design following crows foot notation for tables and elements for clarity](https://user-images.githubusercontent.com/75331597/232339161-fa962dae-1532-4cdd-b7ac-5d10e795a7fc.png)
-
-
