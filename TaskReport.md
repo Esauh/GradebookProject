@@ -1,6 +1,6 @@
 # Completed Task Report
 
-## *SQl Commands for Task 2*
+## *SQL Commands for Task 2*
 ```
 #Instantiates Course Table (PK: course_id)
 create table course(
