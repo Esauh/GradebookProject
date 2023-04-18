@@ -1,6 +1,6 @@
 # Test Cases
 
-**Case 1**
+## **Case 1**
 ```
 #Test 1 - Null values should not be able to be entered in certain attributes where not null is included as a condition for the data member 
 insert into Student values (5, null, null, null);
@@ -14,7 +14,7 @@ Errors:Present (Test Passed) data cannot be entered due to null condition
 ```
 
 
-**Case 2**
+## **Case 2**
 ```
 # Test 2- Cannot insert an assignment into a course if the course_id doesn't exist
 insert into Assignment values(6, 'Group Project', 50  ,2);
@@ -23,7 +23,7 @@ Errors:Present (Test Passed)
 ```
 20:35:43	insert into Assignment values(6, 'Group Project', 50  ,2)	Error Code: 1452. Cannot add or update a child row: a foreign key constraint fails (`testcases`.`assignment`, CONSTRAINT `assignment_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`))	0.015 sec
 ```
-**Case 3**
+## **Case 3**
 ```
 #Test 3 - If a student does not have grades entered his final grade should be null not zero
 insert into Student values (5, 'David', 'Blake', 1);
