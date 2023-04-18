@@ -113,7 +113,7 @@ insert into Assignment values (5,'Midterm', 20.0, 1);
 
 
 #This will change the percentage of the category Tests to 25%
-update Assignment set percentage = 25.0 where category = 'Tests' and course_id = 3
+update Assignment set percentage = 25.0 where category = 'Tests' and course_id = 1
 
 # This will add 2 points to the score of every student
 update Grade set score = score + 2 where assignment_id = '2';
