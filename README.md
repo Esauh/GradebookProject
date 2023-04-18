@@ -12,5 +12,5 @@ In this repo houses our source code named *GradebookProject.sql*, task report na
 
 Once you have mySQL workbench installed and working you can copy our source code and execute it in the IDE or in the command line which ever you prefer
 
-## ER Design(Crowsfoot)
+## ER Design(Crowsfoot): Esau Hutcherson, Ryan Jingwi, Nycire
 ![ER Design following crows foot notation for tables and elements for clarity](https://user-images.githubusercontent.com/75331597/232339161-fa962dae-1532-4cdd-b7ac-5d10e795a7fc.png)
