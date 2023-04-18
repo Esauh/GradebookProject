@@ -75,6 +75,46 @@ insert into Grade values
 (16, 100.0, 4, 4);
 ```
 ## *The Tables with contents filled for Task 3*
+**Course Table**
+| course_id | department            | course_number | course_name              | semester | year |
+| --------- | --------------------- | ------------- | ------------------------ | -------- | ---- |
+| 1         | Electical Engineering | 200           | Principles of Eletronics | Spring   | 2023 |
+
+**Assignment Table**
+| assignment_id | category      | percentage | course_id |
+| ------------- | ------------- | ---------- | --------- |
+| 1             | Participation | 10         | 1         |
+| 2             | Homework      | 20         | 1         |
+| 3             | Tests         | 50         | 1         |
+| 4             | Projects      | 20         | 1         |
+
+**Student Table**
+| student_id | first_name | last_name | course_id |
+| ---------- | ---------- | --------- | --------- |
+| 1          | Darius     | Quinton   | 1         |
+| 2          | Alex       | Smith     | 1         |
+| 3          | Chad       | Johnson   | 1         |
+| 4          | Sally      | Fullman   | 1         |
+
+**Grade Table**
+| grade_id | score | assignment_id | student_id |
+| -------- | ----- | ------------- | ---------- |
+| 1        | 14    | 1             | 1          |
+| 2        | 108   | 2             | 1          |
+| 3        | 101   | 3             | 1          |
+| 4        | 84    | 4             | 1          |
+| 5        | 8     | 1             | 2          |
+| 6        | 86    | 2             | 2          |
+| 7        | 75    | 3             | 2          |
+| 8        | 70    | 4             | 2          |
+| 9        | 7     | 1             | 3          |
+| 10       | 79    | 2             | 3          |
+| 11       | 95    | 3             | 3          |
+| 12       | 80    | 4             | 3          |
+| 13       | 9.5   | 1             | 4          |
+| 14       | 99    | 2             | 4          |
+| 15       | 97    | 3             | 4          |
+| 16       | 100   | 4             | 4          |
 
 ## *SQL Commands for Task 4-12*
 

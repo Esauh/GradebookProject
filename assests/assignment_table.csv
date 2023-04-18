@@ -1,0 +1,6 @@
+assignment_id,category,percentage,course_id
+1,Participation,10.00,1
+2,Homework,20.00,1
+3,Tests,50.00,1
+4,Projects,20.00,1
+5,Midterm,20.00,1
