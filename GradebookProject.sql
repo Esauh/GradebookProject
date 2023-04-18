@@ -113,7 +113,7 @@ insert into Assignment values (5,'Midterm', 20.0, 1);
 
 
 #This will change the percentage of the category Tests to 25%
-update Assignment set percentage = 50.0 where category = 'Tests' and course_id = 1
+update Assignment set percentage = 25.0 where category = 'Tests' and course_id = 3
 
 # This will add 2 points to the score of every student
 update Grade set score = score + 2 where assignment_id = '2';
@@ -129,7 +129,7 @@ from Student join Grade on Student.student_id = Grade.student_id
 join Assignment on Grade.assignment_id = Assignment.assignment_id where Student.student_id = 1;
 
 
-#TODO: This will compute the grade for a student when the lowest score for a given category is dropped (student_id = 1 = Darius)
+#This will compute the grade for a student when the lowest score for a given category is dropped (student_id = 1 = Darius)
 select Student.first_name, Student.last_name, sum(Assignment.percentage*Grade.score)/sum(Assignment.percentage) as final_grade 
 from Student join Grade on Student.student_id = Grade.student_id 
 join Assignment on Grade.assignment_id = Assignment.assignment_id 
@@ -139,6 +139,18 @@ where Grade.score not in (
     where Assignment.category ='Tests') and Student.student_id = 1
 group by Student.student_id;
 
-#TODO: Test Cases
-insert into Grade values (17, 50, 3, 1);
-delete from Grade where grade_id = (17);
+# Test Cases
+
+#Test 1 - Null values cannot be entered in certain attributes where not null is defined 
+insert into Student values (5, null, null, null);
+insert into Course values (2, null, null, null, 'Fall', 2022);
+
+
+#Test 2- Cannot insert an assignment into a course if the course_id does not exist
+insert into Assignment values(6, 'Group Project', 50  ,2);
+
+#Test 3 - If a student does not have grades entered his final grade should be null
+insert into Student values (5, 'David', 'Blake', 1);
+select Student.first_name, Student.last_name, sum(Grade.score*Assignment.percentage)/sum(Assignment.percentage) as final_grade 
+from Student join Grade on Student.student_id = Grade.student_id
+join Assignment on Grade.assignment_id = Assignment.assignment_id where Student.student_id = 5;
