@@ -1,6 +1,6 @@
-### Completed Task Report
+# Completed Task Report
 
-# *SQl Commands for Task 2*
+## *SQl Commands for Task 2*
 ```
 #Instantiates Course Table (PK: course_id)
 create table course(
@@ -74,26 +74,72 @@ insert into Grade values
 (15, 97.0, 3, 4),
 (16, 100.0, 4, 4);
 ```
-# *The Tables with contents filled for Task 3*
+## *The Tables with contents filled for Task 3*
 
-# *SQL Commands for Task 4-12*
+## *SQL Commands for Task 4-12*
 
 **Task 4**
+```
+# Gets the avg/max/min of a particular assignment type (assignment_id[3] = 'Tests')
+select avg(score) as average from Grade where assignment_id = 3;
 
+select max(score) as highest from Grade where assignment_id = 3;
+
+select min(score) as lowest from Grade where assignment_id = 3;
+```
 **Task 5**
-
+```
+#Lists all the students in a given course (course_id[1] = 'Principles of Electronics' )
+select s. * from Student s join Course c on s.course_id = c.course_id where c.course_id = 1;
+```
 **Task 6**
-
+```
+# Lists all the students in the course along with their score from every assignment
+select Student.student_id, Student.first_name, Student.last_name, Assignment.assignment_id, Assignment.category, Grade.score
+from Student join Course on Student.course_id = Course.course_id
+join Assignment on Course.course_id = Assignment.course_id
+left join Grade on Assignment.assignment_id = Grade.assignment_id and Student.student_id = Grade.student_id
+order by Student.student_id, Assignment.assignment_id;
+```
 **Task 7**
-
+```
+#This will add an assignment to the course named Midterm as assignment_id 5 with a percentage weight of 20%
+insert into Assignment values (5,'Midterm', 20.0, 1);
+```
 **Task 8**
-
+```
+#This will change the percentage of the category Tests to 50% and Participation to 5%
+update Assignment set percentage = 50.0 where category = 'Tests' and course_id = 1
+update Assignment set percentage = 5.0 where category = 'Participation' and course_id = 1
+```
 **Task 9**
-
+```
+# This will add 2 points to the score of every student
+update Grade set score = score + 2 where assignment_id = '2';
+```
 **Task 10**
-
+```
+#This will add 2 points to the score of students if their last name contains a Q
+update Grade join Student on Grade.student_id = Student.student_id
+set score = score + 2 where Student.last_name like '%Q%';
+```
 **Task 11**
-
+```
+#This will compute the grade of a student (student_id = 1 = Darius)
+select Student.first_name, Student.last_name, sum(Grade.score*Assignment.percentage)/sum(Assignment.percentage) as final_grade 
+from Student join Grade on Student.student_id = Grade.student_id
+join Assignment on Grade.assignment_id = Assignment.assignment_id where Student.student_id = 1;
+```
 **Task 12**
-
+```
+#This will compute the grade for a student when the lowest score for a given category is dropped (student_id = 1 = Darius)
+select Student.first_name, Student.last_name, sum(Assignment.percentage*Grade.score)/sum(Assignment.percentage) as final_grade 
+from Student join Grade on Student.student_id = Grade.student_id 
+join Assignment on Grade.assignment_id = Assignment.assignment_id 
+where Grade.score not in (
+    select min(Grade.score) 
+    from Grade join Assignment on Grade.assignment_id = Assignment.assignment_id 
+    where Assignment.category ='Tests') and Student.student_id = 1
+group by Student.student_id;
+```
 
